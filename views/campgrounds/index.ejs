@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <!--header just has more semantic meaning than div-->
+    <header class="jumbotron">
+        <!--This container keeps some spacing between text and jumbotron as you resize-->
+        <div class="container">
+            <h1>Welcome To YelpCamp!</h1>
+            <p>View our hand-picked campgrounds from all over the world</p>
+            <!--Put p tag so this button can be on its own line-->
+            <p>
+                <a class="btn btn-primary btn-lg" href="/campgrounds/new">Add New Campground</a>
+            </p>
+        </div>
+    </header>
+
+    <!--display:flex and flex-wrap: wrap ensures that each row has 3 (lg) campgrounds and doesn't get thrown off by heights-->
+    <div class="row text-center d-flex flex-wrap">
+        <% campgrounds.forEach(function(campground){ %>
+        <div class="col-md-3 col-sm-6 col-lg-4">
+            <div class="thumbnail">
+                <img id="indexImage" src="<%= campground.image %>">
+                <div class="caption">
+                    <h4><%= campground.name %></h4>
+                </div>
+                <p>
+                    <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More Info</a>
+                </p>
+            </div>
+        </div>
+            <% }); %>
+        </div>
+    </div>
+    
+<% include ../partials/footer %>
