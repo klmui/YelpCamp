@@ -60,6 +60,33 @@ router.get("/:id", function(req, res){
     });
 });
 
+// EDIT Campground route (show edit form)
+router.get("/:id/edit", function(req, res){
+    Campground.findById(req.params.id, function(err, foundCampground){
+        if(err) {
+            res.redirect("/campgrounds");
+        } else {
+            res.render("campgrounds/edit", {campground: foundCampground});
+        }
+    });
+});
+
+// Get put req from EDIT form
+router.put("/:id", function(req, res) {
+    // find and update the correct campground
+    // var data = {name: req.body.name, image: req.body.image} instead of this, wrap name in form with campground[]
+    Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground){
+        if (err) {
+            res.redirect("/campgrounds");
+        } else {
+            res.redirect("/campgrounds/" + req.params.id); // params comes from the route
+        }
+    });
+});
+
+// UPDATE Campground route (where form submits)
+
+
 // Middleware
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){

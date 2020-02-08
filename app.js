@@ -6,6 +6,7 @@ var express             = require("express"),
     mongoose            = require("mongoose"),
     passport            = require("passport"),
     LocalStrategy       = require("passport-local"),
+    methodOverride      = require("method-override"),
 
     // Models
     Campground          = require("./models/campground"),
@@ -24,6 +25,7 @@ app.set("view engine", "ejs");
 
 // __dirname is the directory that this was run in
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 // seedDB(); // Seed the db
 
 // Passport configuration

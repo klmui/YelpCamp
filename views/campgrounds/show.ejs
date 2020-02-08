@@ -13,12 +13,13 @@
             <div class="thumbnail">
                 <img class="img-responsive" src="<%= campground.image %>">
                 <div class="caption-full">
-                    <h4 class="pull-right">9.00</h4>
+                    <h4 class="pull-right">$9.00/night</h4>
                     <h4><a><%= campground.name %></a></h4>
                     <p><%= campground.description %></p>
-                    <p>
-                        <em>Submitted By <%= campground.author.username %></em>
+                    <p class="text-right">
+                        <em>-Submitted By <%= campground.author.username %></em>
                     </p>
+                    <a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
                 </div>
             </div>
             <!-- Adds a rounded border around an element with a gray background color and some padding: -->
