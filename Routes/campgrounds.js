@@ -69,7 +69,7 @@ router.get("/:id/edit", checkCampgroundOwnership, function(req, res){
 
 // UPDATE Campground route (where form submits)
 // Get put req from EDIT form
-router.put("/:id", function(req, res) {
+router.put("/:id", checkCampgroundOwnership, function(req, res) {
     // find and update the correct campground
     // var data = {name: req.body.name, image: req.body.image} instead of this, wrap name in form with campground[]
     Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground){
@@ -82,7 +82,7 @@ router.put("/:id", function(req, res) {
 });
 
 // DESTROY Campground route
-router.delete("/:id", function(req, res){
+router.delete("/:id", checkCampgroundOwnership, function(req, res){
     Campground.findByIdAndRemove(req.params.id, function(err){
         if (err) {
             res.redirect("/campgrounds");
