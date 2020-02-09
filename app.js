@@ -42,6 +42,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // Adds this middleware to each route. Passes user info
 app.use(function(req, res, next){
+    // Creates a variable called currentUser for every file
     res.locals.currentUser = req.user;
     next();
 });

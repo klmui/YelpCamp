@@ -29,8 +29,11 @@
             </div>
             <!-- Adds a rounded border around an element with a gray background color and some padding: -->
             <div class="well">
-                <div class=text-right>
-                    <a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
+                <div class = "d-inline">
+                    <span class="pull-left">Reviews</span>
+                    <div class="pull-right">
+                        <a class="btn btn-success btn-info" href="/campgrounds/<%= campground._id %>/comments/new">+</a>
+                    </div>
                 </div>
                 <hr>
                 <% campground.comments.forEach(function(comment){ %>
@@ -41,6 +44,9 @@
                             <p style="word-wrap:break-word";>
                                 <%= comment.text %>
                             </p>
+                            <a class="btn btn-xs btn-warning" href="/campgrounds/<%=campground.id %>/comments/<%=comment._id %>/edit">
+                                Edit
+                            </a>
                         </div>
                     </div>
                 <% }) %>

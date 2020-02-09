@@ -45,6 +45,30 @@ router.post("/", isLoggedIn, function(req, res){
     })
 });
 
+// Edit button in form calls this route
+router.get("/:comment_id/edit", function(req, res){
+    Comment.findById(req.params.comment_id, function(err, foundComment){
+        if (err) {
+            res.redirect("back");
+        } else {
+            res.render("comments/edit", {campground_id: req.params.id, comment: foundComment});
+        }
+    });
+});
+
+// COMMENT UPDATE
+router.put("/:comment_id", function(req, res){
+    // req.body.(name of the value in form)
+    console.log(req.params.comment_id);
+    Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment){
+       if(err){
+           res.redirect("back");
+       } else {
+           res.redirect("/campgrounds/" + req.params.id );
+       }
+    });
+ });
+
 // Middleware
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
