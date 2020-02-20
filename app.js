@@ -47,7 +47,7 @@ app.use(function(req, res, next){
     // Creates a variable called currentUser for every file
     res.locals.currentUser = req.user;
     res.locals.error = req.flash("error");
-    res.locals.success = req.flash("sucess");
+    res.locals.success = req.flash("success");
     next();
 });
 

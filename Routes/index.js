@@ -20,12 +20,14 @@ router.get("/register", function(req, res){
 // Handle sign up logic
 router.post("/register", function(req, res){
     var newUser = new User({username: req.body.username}) // Takes the username from the form. Don't add password
+    // Put things you don't want to save explicitly to db in the middle
     User.register(newUser, req.body.password, function(err, user){
         if(err){
-            console.log(err);
+            req.flash("error", err.message);
             return res.render("register");
         }
         passport.authenticate("local")(req, res, function(){
+            req.flash("success", "Welcome to YelpCamp " + user.username);
             res.redirect("/campgrounds");
         });
     });  // Provided by passportLocalMongoose. 
@@ -40,23 +42,18 @@ router.get("/login", function(req, res){
 router.post("/login", passport.authenticate("local",
  {
      successRedirect: "/campgrounds",
-     failureRedirect: "login"
+     failureRedirect: "login",
+     failureFlash: "Sorry! You couldn't login",
+     successFlash: "Login, successful"
 }), function(req, res){
+
 });
 
 // Logout route
 router.get("/logout", function(req, res){
     req.logout();
-    req.flash("sucess", "Logged you out!");
+    req.flash("success", "Logged you out!");
     res.redirect("/campgrounds");
 });
-
-// Middleware
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login");
-}
 
 module.exports = router;
