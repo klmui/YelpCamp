@@ -46,6 +46,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use(function(req, res, next){
     // Creates a variable called currentUser for every file
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("sucess");
     next();
 });
 
