@@ -20,15 +20,20 @@ var express             = require("express"),
     campgroundRoutes    = require("./routes/campgrounds"),
     indexRoutes         = require("./routes/index");
 
-// mongoose.connect("mongodb://localhost/yelp_camp", {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect("mongodb+srv://kenny:S220wLBLe0sqgYdb@cluster0-cbsye.mongodb.net/test?retryWrites=true&w=majority", {
-    useNewUrlParser: true,
-    useCreateIndex: true
-}).then(() => {
+//console.log(process.env.DATABASEURL); // export DATABASEURL=mongodb://localhost/yelp_camp
+mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useCreateIndex: true}).then(() => {
     console.log('Connected to DB!');
 }).catch((err) => {
     console.log('Error:', err.message);
-});
+}); // use env variable
+// mongoose.connect("mongodb+srv://kenny:S220wLBLe0sqgYdb@cluster0-cbsye.mongodb.net/test?retryWrites=true&w=majority", {
+//     useNewUrlParser: true,
+//     useCreateIndex: true
+// }).then(() => {
+//     console.log('Connected to DB!');
+// }).catch((err) => {
+//     console.log('Error:', err.message);
+// });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
@@ -64,6 +69,6 @@ app.use(indexRoutes);
 app.use("/campgrounds", campgroundRoutes); // Appends '/campgrounds' to each route 
 app.use("/campgrounds/:id/comments", commentRoutes);
 
-app.listen(3000 || process.env.PORT, function(){
+app.listen(3000 || process.env.PORT, process.env.IP, function(){
     console.log("Server started");
 });
