@@ -22,7 +22,8 @@ var express             = require("express"),
 
 //console.log(process.env.DATABASEURL); // export DATABASEURL=mongodb://localhost/yelp_camp
 //mongoose.connect("mongodb://localhost/yelp_camp", {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect(process.env.DATABASEURL, {
+var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
+mongoose.connect(url, {
     useNewUrlParser: true,
     useCreateIndex: true
 }).then(() => {
