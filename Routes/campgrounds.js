@@ -21,6 +21,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     // req.body to access the campground being created
     // and access an attribute from the schema
     var name = req.body.name;
+    var price = req.body.price;
     var image = req.body.image;
     var desc = req.body.description;
     var author = {
@@ -28,7 +29,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
         username: req.user.username
     }
     // Object to be pushed into array
-    var newCampground = {name: name, image: image, description: desc, author: author};
+    var newCampground = {name: name, price: price, image: image, description: desc, author: author};
     //campgrounds.push(newCampground);
     // Create a new campground and save to DB
     Campground.create(newCampground, function(err, newlyCreated){
