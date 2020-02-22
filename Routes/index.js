@@ -1,6 +1,6 @@
-var express = require("express");
+var express = require("../node_modules/express");
 var router  = express.Router();
-var passport = require("passport");
+var passport = require("../node_modules/passport");
 var User = require("../models/user");
 
 // Root route

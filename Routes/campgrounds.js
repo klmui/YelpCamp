@@ -1,4 +1,4 @@
-var express = require("express");
+var express = require("../node_modules/express");
 var router  = express.Router();
 var Campground = require("../models/campground");
 var middleware = require("../middleware");

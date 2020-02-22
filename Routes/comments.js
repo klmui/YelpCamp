@@ -1,4 +1,4 @@
-var express = require("express");
+var express = require("../node_modules/express");
 var router  = express.Router({mergeParams: true}); // Id wasn't found so add merge params from campgrounds
 var Campground = require("../models/campground");
 var Comment = require("../models/comment");

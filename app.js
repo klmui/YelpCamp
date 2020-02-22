@@ -21,19 +21,15 @@ var express             = require("express"),
     indexRoutes         = require("./routes/index");
 
 //console.log(process.env.DATABASEURL); // export DATABASEURL=mongodb://localhost/yelp_camp
-mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useCreateIndex: true}).then(() => {
+//mongoose.connect("mongodb://localhost/yelp_camp", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.DATABASEURL, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+}).then(() => {
     console.log('Connected to DB!');
 }).catch((err) => {
     console.log('Error:', err.message);
-}); // use env variable
-// mongoose.connect("mongodb+srv://kenny:S220wLBLe0sqgYdb@cluster0-cbsye.mongodb.net/test?retryWrites=true&w=majority", {
-//     useNewUrlParser: true,
-//     useCreateIndex: true
-// }).then(() => {
-//     console.log('Connected to DB!');
-// }).catch((err) => {
-//     console.log('Error:', err.message);
-// });
+});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
