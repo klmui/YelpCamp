@@ -10,7 +10,7 @@ router.get("/", function(req,res){
         if(err){
             console.log(err);
         } else {
-            res.render("campgrounds/index", {campgrounds:allCampgrounds});
+            res.render("campgrounds/index", {campgrounds: allCampgrounds, page: 'campgrounds'});
         }
     });
 });
@@ -52,6 +52,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 router.get("/:id", function(req, res){
     // find the campground with id
     // Whatever is after colon can be accessed using params
+    // Populate all of the comments for the campground specifically and execute this function for all of them
     Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
         if(err){
             console.log(err);
