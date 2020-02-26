@@ -1,5 +1,5 @@
-// Need to install express, body-parser, ejs, mongoose,
-// passport, passport-local, passport-local-mongoose, express-session
+require('dotenv').config();
+
 var express             = require("express"),
     app                 = express(),
     bodyParser          = require("body-parser"),
