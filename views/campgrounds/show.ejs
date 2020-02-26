@@ -43,7 +43,7 @@
                         <span class="fa fa-star <% if (campground.rating > 2.5) { %> checked <% } %>"></span>
                         <span class="fa fa-star <% if (campground.rating > 3.5) { %> checked <% } %>"></span>
                         <span class="fa fa-star <% if (campground.rating > 4.5) { %> checked <% } %>"></span>
-                        <em>(total reviews: <%= campground.reviews.length %>)</em>
+                        <em>(Total Reviews: <%= campground.reviews.length %>)</em>
                     </p>
                     <p>
                         Current campground rating: <strong><%= campground.rating.toFixed(2) %></strong>
